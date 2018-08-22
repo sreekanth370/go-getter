@@ -88,7 +88,7 @@ func (g *HttpGetter) Get(dst string, u *url.URL) error {
 	} else {
 		source, err = g.parseMeta(resp.Body)
 		if err != nil {
-			return err
+			source = u.String() // xml parse errors are getting in the way of our downloads
 		}
 	}
 	if source == "" {
